@@ -77,7 +77,7 @@ class UserGroupSetup:
             ' ; sudo chown $(id -u):mediacenter ' + self.root_dir + '/data/{media,usenet,torrents}"'
         )
         self.create_config_dir('audiobookshelf')
-        os.system('sudo usermod -a -G mediacenter audiobookshelf')
+        os.system('sudo usermod -a -G mediacenter audiobookshelf')    
 
     def prowlarr(self):
         os.system('sudo useradd prowlarr -u 13006')
@@ -107,3 +107,8 @@ class UserGroupSetup:
         os.system('sudo useradd jellyseerr -u 13012')
         self.create_config_dir('jellyseerr')
         os.system('sudo usermod -a -G mediacenter jellyseerr')
+
+    def bazarr(self):
+        os.system('sudo useradd bazarr -u 13013')
+        self.create_config_dir('bazarr')
+        os.system('sudo usermod -a -G mediacenter bazarr')

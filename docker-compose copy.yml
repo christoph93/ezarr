@@ -46,20 +46,6 @@ services:
       - "8686:8686"
     restart: unless-stopped
 
-  overseerr:
-    image: sctx/overseerr:latest
-    container_name: overseerr
-    environment:
-      - PUID=13009
-      - PGID=13000
-      - UMASK=002
-      - TZ=America/Sao_Paulo
-    volumes:
-      - /mnt/transmission/config/overseerr-config:/app/config
-    ports:
-      - "5055:5055"
-    restart: unless-stopped
-
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:develop
     container_name: prowlarr
@@ -74,46 +60,18 @@ services:
       - "9696:9696"
     restart: unless-stopped
 
-  # plex:
-  #   image: lscr.io/linuxserver/plex:latest
-  #   container_name: plex
-  #   network_mode: host
-  #   environment:
-  #     - PUID=13010
-  #     - PGID=13000
-  #     - VERSION=docker
-  #     - PLEX_CLAIM=
-  #   volumes:
-  #     - /mnt/transmission/config/plex-config:/config
-  #     - /mnt/transmission/data/media:/media
-  #   restart: unless-stopped
-
-  tautulli:
-    image: lscr.io/linuxserver/tautulli:latest
-    container_name: tautulli
-    environment:
-      - PUID=13014
-      - PGID=13000
-      - TZ=America/Sao_Paulo
-    volumes:
-      - /mnt/transmission/config/tautulli-config:/config
-    ports:
-      - "8181:8181"
-    restart: unless-stopped
-
   bazarr:
     image: lscr.io/linuxserver/bazarr:latest
     container_name: bazarr
     environment:
-      - PUID=13013
-      - PGID=13000
-      - UMASK=002
+      - PUID=1013
+      - PGID=1000
       - TZ=America/Sao_Paulo
     volumes:
       - /mnt/transmission/config/bazarr-config:/config
-      - /mnt/transmission/data/media/movies:/movies
-      - /mnt/transmission/data/media/tv:/tv
+      - /mnt/transmission/data/media/movies:/data:/movies #optional
+      - /mnt/transmission/data/media/tv:/data:/tv #optional
     ports:
-      - "6767:6767"
+      - 6767:6767
     restart: unless-stopped
 

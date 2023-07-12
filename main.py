@@ -91,6 +91,11 @@ services_classed['usenet'] = []
 print('Use SABnzbd? [Y/n]', end=" ")
 take_input('sabnzbd', 'usenet')
 
+print('\n===SUBTITLES===')
+services_classed['subs'] = []
+print('Use Bazarr? [Y/n]', end=" ")
+take_input('bazarr', 'subs')
+
 if len(services_classed['torrent']) == 0 and len(services_classed['usenet']) == 0:
     print('Warning: no usenet or BitTorrent clients selected.')
 

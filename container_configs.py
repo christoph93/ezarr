@@ -265,3 +265,22 @@ class ContainerConfig:
             '      - "8081:8080"\n'
             '    restart: unless-stopped\n\n'
         )
+    
+    def bazarr(self):
+        return (
+            '  bazarr:\n'
+            '    image: lscr.io/linuxserver/bazarr:latest\n'
+            '    container_name: bazarr\n'
+            '    environment:\n'
+            '      - PUID=13013\n'
+            '      - PGID=13000\n'
+            '      - UMASK=002\n'
+            '      - TZ=' + self.timezone + '\n'
+            '    volumes:\n'
+            '      - ' + self.config_dir + '/bazarr-config:/config\n'
+            '      - ' + self.root_dir + '/data/media/movies:/movies\n'
+            '      - ' + self.root_dir + '/data/media/tv:/tv\n'
+            '    ports:\n'
+            '      - "6767:6767"\n'
+            '    restart: unless-stopped\n\n'
+        )
